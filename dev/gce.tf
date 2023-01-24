@@ -14,8 +14,7 @@ resource "google_compute_instance" "gce_vpn_test" {
   }
 #   metadata_startup_script = <<EOF
 # # 依存パッケージ更新&インストール
-# sudo apt update
-# sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
+# sudo apt update && sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
 #
 # # 公式DockerリポジトリのGPGキーをシステムに追加
 # curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
@@ -24,8 +23,7 @@ resource "google_compute_instance" "gce_vpn_test" {
 # echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 #
 # # パッケージリストを再更新してdockerをインストール
-# sudo apt update
-# sudo apt install -y docker-ce docker-ce-cli containerd.io
+# sudo apt update && sudo apt install -y docker-ce docker-ce-cli containerd.io
 #
 # # ユーザーをdockerグループに追加
 # sudo usermod -aG docker ${USER}
@@ -37,7 +35,8 @@ resource "google_compute_instance" "gce_vpn_test" {
 #
 # # Gitリポジトリクローン
 # sudo mkdir -p /var/www/
-# sudo git clone 
 # sudo git clone https://github.com/butterthon-dev/terraform-gcp-gce-8000.git
+# cd /var/www/terraform-gcp-gce-8000
+# docker-compose up -d
 # EOF
 }
