@@ -1,6 +1,6 @@
 resource "google_compute_address" "address_nat_vpc_butterthon_dev" {
   name = "address-nat-vpc-butterthon-dev"
-  region = module.vpc_butterthon_dev.subnets["asia-northeast1/vpc-sub-butterthon-dev"].region
+  region = module.vpc_butterthon_dev.subnets["asia-northeast1/vpc-sub"].region
 }
 
 module "cloud_router" {
@@ -16,4 +16,6 @@ module "cloud_router" {
     nat_ip_allocate_option = "MANUAL_ONLY"
     nat_ips                = [google_compute_address.address_nat_vpc_butterthon_dev.self_link]
   }]
+
+  depends_on = [google_compute_address.address_nat_vpc_butterthon_dev]
 }

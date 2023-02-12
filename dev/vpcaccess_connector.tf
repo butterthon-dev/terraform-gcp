@@ -11,8 +11,8 @@ module "vpcaccess_connector" {
   vpc_connectors = [
     {
       name        = "central-serverless"
-      region      = module.vpc_butterthon_dev.subnets["asia-northeast1/vpc-sub-vpcaccess-connector"].region
-      subnet_name = module.vpc_butterthon_dev.subnets["asia-northeast1/vpc-sub-vpcaccess-connector"].name
+      region      = module.vpc_butterthon_dev.subnets["asia-northeast1/vpc-sub"].region
+      subnet_name = module.vpc_butterthon_dev.subnets["asia-northeast1/vpc-sub"].name
       machine_type  = "e2-micro"
       min_instances = 2
       max_instances = 10

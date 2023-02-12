@@ -3,20 +3,20 @@ module "vpc_butterthon_dev" {
   version = "~> 6.0"
 
   project_id   = var.project_id
-  network_name = "vpc-butterthon-dev"
+  network_name = "vpc"
   routing_mode = "GLOBAL"
 
   subnets = [
     {
-      subnet_name   = "vpc-sub-butterthon-dev"
+      subnet_name   = "vpc-sub"
       subnet_ip     = "10.10.10.0/24" # 10.10.10.1〜10.10.10.254
       subnet_region = var.region
     },
-    {
-      subnet_name   = "vpc-sub-vpcaccess-connector"
-      subnet_ip     = "10.10.20.0/28" # 10.10.10.1〜10.10.10.254
-      subnet_region = var.region
-    }
+    # {
+    #   subnet_name   = "vpc-sub-vpcaccess-connector"
+    #   subnet_ip     = "10.10.20.0/28" # 10.10.10.1〜10.10.10.254
+    #   subnet_region = var.region
+    # }
   ]
 
   firewall_rules = [
